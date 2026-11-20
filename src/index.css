@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif-kr: "Noto Serif KR", Georgia, serif;
+  --font-sans-kr: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono-num: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-canvas: #F7F8F9;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F0F2F5;
+  --color-ink: #14181D;
+  --color-ink-muted: #525C68;
+  --color-ink-subtle: #788492;
+  --color-hairline: #E1E5EA;
+  --color-indigo-accent: #1E3A8A;
+  --color-indigo-hover: #172E6E;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans-kr);
+    color: var(--color-ink);
+    background-color: var(--color-canvas);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, .font-editorial {
+    font-family: var(--font-serif-kr);
+  }
+
+  .font-metric {
+    font-family: var(--font-mono-num);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

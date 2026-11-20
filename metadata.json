@@ -1,0 +1,8 @@
+{
+  "name": "한국 위인 타자 연습",
+  "description": "대한민국의 주요 위인과 핵심 업적을 직접 따라 치며 타자 실력과 한국사를 함께 익히는 타자 연습 게임입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
