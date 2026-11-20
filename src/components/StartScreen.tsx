@@ -20,7 +20,7 @@ const QUESTION_COUNTS: { value: QuestionCountOption; label: string }[] = [
   { value: 20, label: '20문제 · 전체 완주' },
 ];
 
-const HERO_IMAGE_PATH = '/src/assets/images/hero_korean_archive_1795144261138.jpg';
+const HERO_IMAGE_PATH = `${import.meta.env.BASE_URL}src/assets/images/hero_korean_archive_1795144261138.jpg`;
 
 export function StartScreen({
   selectedEra,
