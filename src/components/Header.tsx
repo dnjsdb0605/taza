@@ -5,6 +5,7 @@ interface HeaderProps {
   section: AppSection;
   onNavigateSection: (section: AppSection) => void;
   onQuickStart: () => void;
+  onOpenAddPerson: () => void;
   onAbortGame: () => void;
 }
 
@@ -13,6 +14,7 @@ export function Header({
   section,
   onNavigateSection,
   onQuickStart,
+  onOpenAddPerson,
   onAbortGame,
 }: HeaderProps) {
   const isPlaying = status === 'playing';
@@ -71,7 +73,7 @@ export function Header({
                 : 'border-transparent text-[#525C68] hover:text-[#14181D]'
             }`}
           >
-            위인 도감
+            위인 인력풀
           </button>
         </nav>
 
@@ -84,6 +86,14 @@ export function Header({
               className="px-4 py-2 text-xs sm:text-sm font-medium text-[#14181D] bg-white border border-[#D0D6DE] rounded-md hover:bg-[#F0F2F5] transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E3A8A]"
             >
               연습 종료
+            </button>
+          ) : section === 'archive' ? (
+            <button
+              type="button"
+              onClick={onOpenAddPerson}
+              className="px-4 py-2 text-xs sm:text-sm font-medium text-white bg-[#1E3A8A] rounded-md hover:bg-[#172E6E] transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E3A8A]"
+            >
+              새 인물 추가
             </button>
           ) : (
             <button

@@ -1,24 +1,47 @@
-export type Era = '삼국시대' | '고려' | '조선' | '근현대';
+export type Era =
+  | '고조선~삼국'
+  | '고려'
+  | '조선'
+  | '근현대'
+  | '현대/기타';
 
 export type EraFilter = '전체' | Era;
 
-export type QuestionCountOption = 5 | 10 | 20;
+export type Category =
+  | '정치/외교'
+  | '군사/국방'
+  | '과학/기술'
+  | '문화/예술'
+  | '학문/사상'
+  | '경제/산업';
+
+export type CategoryFilter = '전체' | Category;
+
+export type SourceFilter = 'all' | 'preset' | 'custom';
+
+export type QuestionCountOption = 5 | 10 | 20 | 30;
 
 export type GameStatus = 'idle' | 'playing' | 'finished';
 
 export type AppSection = 'practice' | 'archive';
 
-export interface Figure {
-  id: number;
+export interface Person {
+  id: string;
   name: string;
+  alias: string;
   era: Era;
-  years: string;
-  hint: string;
-  achievement: string;
+  category: Category;
+  summary: string;
+  details: string;
+  tags: string[];
+  isPreset: boolean;
+  createdAt: string;
 }
 
+export type PersonFormInput = Omit<Person, 'id' | 'isPreset' | 'createdAt'>;
+
 export interface QuestionResult {
-  figure: Figure;
+  person: Person;
   typedText: string;
   cpm: number;
   accuracy: number;
@@ -44,3 +67,11 @@ export interface EvaluatedChar {
   char: string;
   status: CharEvalStatus;
 }
+
+export interface ToastMessage {
+  id: string;
+  type: 'success' | 'error' | 'info';
+  text: string;
+}
+
+export type ImportMergeStrategy = 'merge-skip' | 'merge-overwrite' | 'replace-all';

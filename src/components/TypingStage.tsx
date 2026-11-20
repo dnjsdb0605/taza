@@ -5,7 +5,8 @@ import {
   CornerDownLeft,
   ShieldAlert,
 } from 'lucide-react';
-import type { Figure, QuestionResult } from '../types/game';
+import { CATEGORY_STYLES, ERA_STYLES } from '../data/figuresData';
+import type { Person, QuestionResult } from '../types/game';
 import {
   calculateKoreanCpm,
   calculateLiveAccuracy,
@@ -15,7 +16,7 @@ import {
 } from '../utils/typingMetrics';
 
 interface TypingStageProps {
-  questions: Figure[];
+  questions: Person[];
   currentIndex: number;
   sessionStartTime: number;
   onSubmitQuestion: (result: QuestionResult) => void;
@@ -32,8 +33,10 @@ export function TypingStage({
   sessionStartTime,
   onSubmitQuestion,
 }: TypingStageProps) {
-  const currentFigure = questions[currentIndex];
-  const target = currentFigure.achievement;
+  const currentPerson = questions[currentIndex];
+  const target = currentPerson.summary;
+  const eraStyle = ERA_STYLES[currentPerson.era];
+  const categoryStyle = CATEGORY_STYLES[currentPerson.category];
 
   const [userInput, setUserInput] = useState('');
   const [isComposing, setIsComposing] = useState(false);
@@ -114,7 +117,7 @@ export function TypingStage({
       const cpm = calculateKoreanCpm(target, graded.typedText, elapsedMs, false);
 
       onSubmitQuestion({
-        figure: currentFigure,
+        person: currentPerson,
         typedText: graded.typedText,
         cpm,
         accuracy: graded.accuracy,
@@ -122,14 +125,17 @@ export function TypingStage({
         isCorrect: graded.isCorrect,
       });
     },
-    [currentFigure, currentIndex, onSubmitQuestion, showTemporaryNotice, target]
+    [currentIndex, currentPerson, onSubmitQuestion, showTemporaryNotice, target]
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nextValue = e.target.value;
 
-    // Prevent leading whitespace before user types any actual character
-    if (userInput.length === 0 && nextValue.trim().length === 0 && nextValue.length > 0) {
+    if (
+      userInput.length === 0 &&
+      nextValue.trim().length === 0 &&
+      nextValue.length > 0
+    ) {
       setUserInput('');
       return;
     }
@@ -144,7 +150,6 @@ export function TypingStage({
 
     setUserInput(nextValue);
 
-    // Auto-submit once target length is reached and Korean IME composition is finished
     const nativeComposing =
       typeof (e.nativeEvent as InputEvent).isComposing === 'boolean'
         ? (e.nativeEvent as InputEvent).isComposing
@@ -174,7 +179,6 @@ export function TypingStage({
     const finalizedValue = e.currentTarget.value;
     setUserInput(finalizedValue);
 
-    // If finishing composition completed the target sentence length, submit cleanly
     if (finalizedValue.trim().length >= target.length) {
       finalizeAndSubmit(finalizedValue);
     }
@@ -182,7 +186,6 @@ export function TypingStage({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      // Guard against Korean IME Enter key firing while a syllable is still composing
       if (isComposingRef.current || e.nativeEvent.isComposing || e.keyCode === 229) {
         return;
       }
@@ -287,22 +290,35 @@ export function TypingStage({
         </div>
       </section>
 
-      {/* Primary Typing Stage Card (Single Elevation) */}
+      {/* Primary Typing Stage Card */}
       <section
         aria-label="위인 업적 타자 입력"
         className="bg-white border border-[#E1E5EA] rounded-xl p-6 sm:p-10 space-y-8"
       >
-        {/* Figure Metadata & Name (Zero Pills) */}
-        <div className="space-y-2 pb-6 border-b border-[#ECEFF3]">
-          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#525C68]">
-            <span className="font-semibold text-[#1E3A8A]">{currentFigure.era}</span>
-            <span aria-hidden="true">·</span>
-            <span>{currentFigure.hint}</span>
-            <span aria-hidden="true">·</span>
-            <span className="font-metric text-[#788492]">{currentFigure.years}</span>
+        {/* Figure Metadata & Name */}
+        <div className="space-y-2.5 pb-6 border-b border-[#ECEFF3]">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span
+              className={`px-2 py-0.5 rounded font-semibold ${eraStyle.bg} ${eraStyle.text}`}
+            >
+              {currentPerson.era}
+            </span>
+            <span
+              className={`px-2 py-0.5 rounded border font-medium bg-white ${categoryStyle.border} ${categoryStyle.text}`}
+            >
+              {currentPerson.category}
+            </span>
+            {currentPerson.alias && (
+              <span className="text-[#525C68] text-xs sm:text-sm">
+                · {currentPerson.alias}
+              </span>
+            )}
+            {!currentPerson.isPreset && (
+              <span className="text-[#1E3A8A] font-semibold">· 사용자 확장</span>
+            )}
           </div>
           <h1 className="font-editorial text-2xl sm:text-3xl font-bold text-[#14181D] tracking-tight">
-            {currentFigure.name}
+            {currentPerson.name}
           </h1>
         </div>
 
@@ -325,8 +341,7 @@ export function TypingStage({
                 let charClass = 'text-[#8C96A3]';
 
                 if (item.status === 'correct') {
-                  charClass =
-                    'text-[#0F766E] border-b-2 border-[#0F766E]/35';
+                  charClass = 'text-[#0F766E] border-b-2 border-[#0F766E]/35';
                 } else if (item.status === 'incorrect') {
                   charClass =
                     'text-[#C81E1E] bg-[#FEF2F2] underline decoration-wavy decoration-[#DC2626] underline-offset-4 rounded-xs';
@@ -339,10 +354,12 @@ export function TypingStage({
 
                 return (
                   <span
-                    key={`${currentFigure.id}-char-${idx}`}
+                    key={`${currentPerson.id}-char-${idx}`}
                     className={`transition-colors duration-75 ${charClass}`}
                   >
-                    {item.char === ' ' && item.status === 'incorrect' ? '␣' : item.char}
+                    {item.char === ' ' && item.status === 'incorrect'
+                      ? '␣'
+                      : item.char}
                   </span>
                 );
               })}
@@ -357,7 +374,7 @@ export function TypingStage({
           </label>
           <div className="relative">
             <input
-              key={currentFigure.id}
+              key={`${currentPerson.id}-${currentIndex}`}
               ref={inputRef}
               id="typing-input"
               type="text"
@@ -385,31 +402,50 @@ export function TypingStage({
 
           {/* Dual-Coded Inline Feedback Bar + Submit Action */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-            <div className="min-h-6 flex items-center gap-2 text-xs sm:text-sm" aria-live="polite">
+            <div
+              className="min-h-6 flex items-center gap-2 text-xs sm:text-sm"
+              aria-live="polite"
+            >
               {notice?.type === 'paste' ? (
                 <>
-                  <ShieldAlert className="w-4 h-4 text-[#B45309] shrink-0" aria-hidden="true" />
-                  <span className="font-medium text-[#B45309]">{notice.message}</span>
+                  <ShieldAlert
+                    className="w-4 h-4 text-[#B45309] shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-medium text-[#B45309]">
+                    {notice.message}
+                  </span>
                 </>
               ) : notice?.type === 'empty' ? (
                 <>
-                  <AlertCircle className="w-4 h-4 text-[#B45309] shrink-0" aria-hidden="true" />
-                  <span className="font-medium text-[#B45309]">{notice.message}</span>
+                  <AlertCircle
+                    className="w-4 h-4 text-[#B45309] shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="font-medium text-[#B45309]">
+                    {notice.message}
+                  </span>
                 </>
               ) : errorCount > 0 ? (
                 <>
-                  <AlertCircle className="w-4 h-4 text-[#C81E1E] shrink-0" aria-hidden="true" />
+                  <AlertCircle
+                    className="w-4 h-4 text-[#C81E1E] shrink-0"
+                    aria-hidden="true"
+                  />
                   <span className="font-medium text-[#C81E1E]">
                     오타 {errorCount}자 발견 · 수정하거나 Enter로 제출할 수 있습니다
                   </span>
                 </>
               ) : userInput.length > 0 ? (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-[#0F766E] shrink-0" aria-hidden="true" />
+                  <CheckCircle2
+                    className="w-4 h-4 text-[#0F766E] shrink-0"
+                    aria-hidden="true"
+                  />
                   <span className="text-[#0F766E] font-medium">
                     {isComposing
                       ? '한글 조합 입력 중 · 끝까지 입력하면 자동으로 넘어갑니다'
-                      : '정확하게 입력 중 · 마침표까지 입력하거나 Enter로 제출'}
+                      : '정확하게 입력 중 · 끝까지 입력하거나 Enter로 제출'}
                   </span>
                 </>
               ) : (
@@ -432,7 +468,7 @@ export function TypingStage({
         </div>
       </section>
 
-      {/* Subtle Character State Legend (Dual-Coded Accessibility) */}
+      {/* Subtle Character State Legend */}
       <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#525C68]">
         <span>
           <span className="text-[#0F766E] font-semibold border-b border-[#0F766E]/40 pb-0.5">

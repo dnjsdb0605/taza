@@ -1,22 +1,24 @@
 import { useMemo, useState } from 'react';
 import {
   AlertCircle,
+  BookOpen,
   CheckCircle2,
   Home,
   RotateCcw,
   Trophy,
 } from 'lucide-react';
-import type { BestRecord, EraFilter, QuestionResult } from '../types/game';
+import type { BestRecord, Person, QuestionResult } from '../types/game';
 import { formatDuration } from '../utils/typingMetrics';
 
 interface ResultScreenProps {
   results: QuestionResult[];
   totalElapsedMs: number;
-  selectedEra: EraFilter;
+  sessionLabel: string;
   bestRecord: BestRecord | null;
   isNewBestCpm: boolean;
   onRetry: () => void;
   onBackToMenu: () => void;
+  onInspectPerson: (person: Person) => void;
 }
 
 type ResultFilter = 'all' | 'mistakes';
@@ -24,11 +26,12 @@ type ResultFilter = 'all' | 'mistakes';
 export function ResultScreen({
   results,
   totalElapsedMs,
-  selectedEra,
+  sessionLabel,
   bestRecord,
   isNewBestCpm,
   onRetry,
   onBackToMenu,
+  onInspectPerson,
 }: ResultScreenProps) {
   const [filter, setFilter] = useState<ResultFilter>('all');
 
@@ -60,7 +63,7 @@ export function ResultScreen({
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E1E5EA]">
         <div className="space-y-2.5">
           <p className="text-xs sm:text-sm font-medium text-[#525C68]">
-            연습 완료 · {selectedEra} 모드 · 총 {results.length}문항
+            연습 완료 · {sessionLabel} · 총 {results.length}문항
           </p>
           <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-[#14181D] tracking-tight text-balance">
             위인의 기록을 모두 마쳤습니다
@@ -146,7 +149,7 @@ export function ResultScreen({
               학습한 위인 및 오답 복습
             </h2>
             <p className="text-sm text-[#525C68]">
-              각 위인의 대표 업적과 내가 입력한 문장을 비교해 보세요.
+              인물명을 클릭하면 상세 공적과 조사 메모를 바로 확인할 수 있습니다.
             </p>
           </div>
 
@@ -192,12 +195,12 @@ export function ResultScreen({
         ) : (
           <div className="bg-white border border-[#E1E5EA] rounded-xl divide-y divide-[#ECEFF3]">
             {displayedResults.map((item, idx) => {
-              const target = item.figure.achievement;
+              const target = item.person.summary;
               const typed = item.typedText;
 
               return (
                 <article
-                  key={`${item.figure.id}-${idx}`}
+                  key={`${item.person.id}-${idx}`}
                   className="p-5 sm:p-6 space-y-3"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -205,11 +208,17 @@ export function ResultScreen({
                       <span className="font-metric text-xs text-[#788492]">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
-                      <h3 className="font-editorial text-lg font-bold text-[#14181D]">
-                        {item.figure.name}
-                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => onInspectPerson(item.person)}
+                        className="font-editorial text-lg font-bold text-[#14181D] hover:text-[#1E3A8A] hover:underline inline-flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <span>{item.person.name}</span>
+                        <BookOpen className="w-3.5 h-3.5 text-[#788492]" aria-hidden="true" />
+                      </button>
                       <span className="text-xs sm:text-sm text-[#525C68]">
-                        {item.figure.era} · {item.figure.hint}
+                        {item.person.era} · {item.person.category}
+                        {item.person.alias ? ` · ${item.person.alias}` : ''}
                       </span>
                     </div>
 
@@ -218,12 +227,18 @@ export function ResultScreen({
                       <span className="text-[#525C68]">정확도 {item.accuracy}%</span>
                       {item.isCorrect ? (
                         <span className="inline-flex items-center gap-1 font-sans font-semibold text-[#0F766E]">
-                          <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                          <CheckCircle2
+                            className="w-4 h-4 shrink-0"
+                            aria-hidden="true"
+                          />
                           완벽 입력
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 font-sans font-semibold text-[#C81E1E]">
-                          <AlertCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                          <AlertCircle
+                            className="w-4 h-4 shrink-0"
+                            aria-hidden="true"
+                          />
                           오타 있음
                         </span>
                       )}
