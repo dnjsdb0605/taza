@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ArrowRight, BookOpen, Plus, RotateCcw } from 'lucide-react';
+import heroArchiveImg from '../assets/images/hero_korean_archive_1795144261138.jpg';
 import {
   CATEGORY_FILTERS,
   ERA_DESCRIPTIONS,
@@ -39,7 +40,7 @@ const QUESTION_COUNTS: { value: QuestionCountOption; label: string }[] = [
   { value: 30, label: '30문제' },
 ];
 
-const HERO_IMAGE_PATH = `${import.meta.env.BASE_URL}src/assets/images/hero_korean_archive_1795144261138.jpg`;
+const HERO_IMAGE_PATH = heroArchiveImg;
 
 export function StartScreen({
   people,

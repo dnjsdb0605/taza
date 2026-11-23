@@ -9,7 +9,7 @@ import type {
 
 export const PEOPLE_STORAGE_KEY = 'kr_great_figures_pool_v1';
 const SEED_VERSION_KEY = 'kr_great_figures_seed_version';
-const CURRENT_SEED_VERSION = 2;
+const CURRENT_SEED_VERSION = 3;
 
 export const ERAS: Era[] = [
   '고조선~삼국',
@@ -33,7 +33,7 @@ export const CATEGORIES: Category[] = [
 export const CATEGORY_FILTERS: CategoryFilter[] = ['전체', ...CATEGORIES];
 
 export const ERA_DESCRIPTIONS: Record<Era, string> = {
-  '고조선~삼국': '고조선 건국부터 삼국·발해·통일신라까지 민족의 기틀과 문화를 세운 시대',
+  '고조선~삼국': '고조선 건국부터 삼국·가야·발해·통일신라까지 민족의 기틀과 문화를 세운 시대',
   고려: '후삼국을 통일하고 자주 외교와 과학 기술, 불교 문화를 꽃피운 시대',
   조선: '훈민정음 창제와 성리학·실학, 국난 극복의 충절이 빛난 시대',
   근현대: '조국의 독립과 자유, 민족의 언어와 양심을 지켜낸 시대',
@@ -80,7 +80,7 @@ export const CATEGORY_STYLES: Record<Category, { text: string; border: string }>
 const SEED_DATE = '2026-01-01T00:00:00.000Z';
 
 export const PRESET_PEOPLE: Person[] = [
-  // ── 고조선~삼국 (12명) ─────────────────────────────────────────────
+  // ── 고조선~삼국 (20명) ─────────────────────────────────────────────
   {
     id: 'preset-dangun',
     name: '단군왕검',
@@ -104,6 +104,45 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '부여에서 남하해 기원전 37년 압록강 유역 졸본에 도읍을 정하고 고구려를 건국했다. 뛰어난 활솜씨와 지도력으로 주변 소국들을 통합하며 동북아 강대국으로 도약할 기반을 다졌다.',
     tags: ['고구려건국', '주몽', '졸본'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-onjo',
+    name: '온조왕',
+    alias: '백제의 건국 시조',
+    era: '고조선~삼국',
+    category: '정치/외교',
+    summary: '한강 유역 위례성에 도읍을 정하고 백제를 세워 기틀을 다졌다.',
+    details:
+      '고구려 건국 세력에서 남하해 기원전 18년 비옥한 한강 유역 하남 위례성에 백제를 세웠다. 마한 세력과의 교류와 정복을 통해 한반도 중서부의 중심 국가로 성장할 토대를 구축했다.',
+    tags: ['백제건국', '위례성', '한강유역'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-hyeokgeose',
+    name: '박혁거세',
+    alias: '신라의 건국 시조',
+    era: '고조선~삼국',
+    category: '정치/외교',
+    summary: '서라벌 육촌의 추대를 받아 신라를 건국하고 천년 왕조를 열었다.',
+    details:
+      '기원전 57년 경주 일대 진한 6촌장들의 추대로 서라벌에 거서간으로 즉위해 신라를 세웠다. 농사와 길쌈을 장려하고 성곽을 쌓아 천 년 역사를 이어갈 신라의 기틀을 마련했다.',
+    tags: ['신라건국', '서라벌', '천년왕조'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimsuro',
+    name: '김수로',
+    alias: '금관가야의 건국 시조',
+    era: '고조선~삼국',
+    category: '정치/외교',
+    summary: '김해 지역에 금관가야를 세우고 철기 문화와 해상 교역을 발전시켰다.',
+    details:
+      '서기 42년 낙동강 하류 김해에 금관가야를 건국해 전기 가야 연맹을 주도했다. 풍부한 철광석 생산을 바탕으로 낙랑과 왜를 잇는 활발한 중계 무역을 펼치며 독자적 문화를 꽃피웠다.',
+    tags: ['금관가야', '철기문화', '가야연맹'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -147,6 +186,32 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-jinheung',
+    name: '진흥왕',
+    alias: '신라 영토 확장의 군주',
+    era: '고조선~삼국',
+    category: '군사/국방',
+    summary: '화랑도를 국가 조직으로 개편하고 한강 유역을 차지해 신라의 전성기를 열었다.',
+    details:
+      '대가야를 병합하고 한강 유역과 함경도 일대까지 영토를 넓히며 네 개의 순수비를 세웠다. 화랑도를 정비해 인재를 양성하고 중국과 직접 교류하는 통로를 확보해 삼국 통일의 발판을 마련했다.',
+    tags: ['진흥왕순수비', '화랑도정비', '한강장악'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-ureuk',
+    name: '우륵',
+    alias: '가야금의 대가',
+    era: '고조선~삼국',
+    category: '문화/예술',
+    summary: '가야금 열두 곡을 지어 신라에 전하며 우리 전통 음악의 토대를 세웠다.',
+    details:
+      '대가야 가실왕의 명으로 가야금 12곡을 작곡했으며, 나라가 기울자 신라로 망명해 충주 탄금대 일대에서 제자들을 가르쳤다. 가야 음악을 신라 궁중 음악으로 승화시켜 한국 전통 음악의 맥을 이었다.',
+    tags: ['가야금', '탄금대', '전통음악'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-eulji',
     name: '을지문덕',
     alias: '살수대첩의 명장',
@@ -160,15 +225,15 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
-    id: 'preset-gyebaek',
-    name: '계백',
-    alias: '황산벌의 결사대장',
+    id: 'preset-yeongaesomun',
+    name: '연개소문',
+    alias: '고구려 말기의 대막리지',
     era: '고조선~삼국',
     category: '군사/국방',
-    summary: '오천 결사대를 이끌고 황산벌에서 끝까지 맞서 백제의 충절을 보였다.',
+    summary: '당 태종의 침략에 맞서 고구려의 국방을 굳건히 지키며 항전했다.',
     details:
-      '660년 나당 연합군의 침공으로 백제가 위기에 처하자 5천 명의 결사대를 이끌고 황산벌로 출정했다. 열 배에 달하는 신라군에 맞서 네 차례 승리를 거두며 최후까지 나라를 지킨 충신으로 기억된다.',
-    tags: ['황산벌전투', '백제충절', '오천결사대'],
+      '천리장성 축조를 감독하고 대막리지로 집권해 강경한 대외 정책으로 고구려의 자주성을 수호했다. 645년 안시성 전투를 비롯한 당나라의 대규모 침공을 막아내며 동북아의 균형을 지켜냈다.',
+    tags: ['대막리지', '천리장성', '고구려항전'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -182,6 +247,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '우리 역사 최초의 여성 군주로 즉위해 백성 구휼과 외교적 안정을 도모했다. 동양에서 가장 오래된 천문대인 첨성대와 분황사 모전석탑, 황룡사 구층목탑을 세워 찬란한 신라 문화를 꽃피웠다.',
     tags: ['첨성대', '황룡사구층목탑', '신라여왕'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-gyebaek',
+    name: '계백',
+    alias: '황산벌의 결사대장',
+    era: '고조선~삼국',
+    category: '군사/국방',
+    summary: '오천 결사대를 이끌고 황산벌에서 끝까지 맞서 백제의 충절을 보였다.',
+    details:
+      '660년 나당 연합군의 침공으로 백제가 위기에 처하자 5천 명의 결사대를 이끌고 황산벌로 출정했다. 열 배에 달하는 신라군에 맞서 네 차례 승리를 거두며 최후까지 나라를 지킨 충신으로 기억된다.',
+    tags: ['황산벌전투', '백제충절', '오천결사대'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -212,6 +290,19 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-uisang',
+    name: '의상',
+    alias: '신라 화엄종의 개창자',
+    era: '고조선~삼국',
+    category: '학문/사상',
+    summary: '부석사를 창건하고 화엄일승법계도를 저술해 신라 화엄 사상을 정립했다.',
+    details:
+      '당나라에서 화엄학을 깊이 연구한 뒤 귀국해 영주 부석사를 비롯한 화엄 십찰을 세워 불교 사상을 체계화했다. 하나가 곧 전체라는 화엄 사상으로 통일신라의 정신적 통합에 크게 기여했다.',
+    tags: ['부석사', '화엄종', '화엄일승법계도'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-daejoyeong',
     name: '대조영',
     alias: '해동성국 발해의 시조',
@@ -221,6 +312,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '고구려 멸망 이후 당나라의 지배에서 벗어나 천문령 전투에서 승리한 뒤 698년 동모산에 발해를 세웠다. 고구려 계승 의식을 확립하며 남북국 시대를 열었고 훗날 해동성국 번영의 토대를 놓았다.',
     tags: ['발해건국', '동모산', '남북국시대'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-hyecho',
+    name: '혜초',
+    alias: '세계를 누빈 신라의 구법승',
+    era: '고조선~삼국',
+    category: '문화/예술',
+    summary: '인도와 중앙아시아를 순례하며 왕오천축국전을 남겨 귀중한 기록을 전했다.',
+    details:
+      '8세기 초 당나라를 거쳐 바다로 인도에 건너간 뒤 중앙아시아 실크로드를 따라 4년여에 걸쳐 대장정을 완주했다. 그가 남긴 여행기 왕오천축국전은 당시 서역과 인도의 역사를 전하는 세계적 사료다.',
+    tags: ['왕오천축국전', '실크로드', '구법승'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -238,7 +342,7 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
 
-  // ── 고려 (11명) ────────────────────────────────────────────────────
+  // ── 고려 (18명) ────────────────────────────────────────────────────
   {
     id: 'preset-wanggeon',
     name: '왕건',
@@ -249,6 +353,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '호족 포용 정책과 백성의 조세 부담을 줄이는 취민유도를 펼쳐 민심을 얻었다. 신라의 평화적 귀순과 발해 유민 포용을 통해 실질적인 민족 재통합을 이루었으며 훈요십조를 남겼다.',
     tags: ['고려건국', '후삼국통일', '훈요십조'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-gwangjong',
+    name: '광종',
+    alias: '과거제와 노비안검법의 개혁 군주',
+    era: '고려',
+    category: '정치/외교',
+    summary: '노비안검법과 과거제를 실시해 왕권을 강화하고 고려의 통치 체제를 정비했다.',
+    details:
+      '호족 세력이 불법으로 거느린 양민을 해방하는 노비안검법을 단행하고, 쌍기의 건의를 받아들여 한국사 최초로 과거제를 도입했다. 능력 중심의 관료 선발 기틀을 세워 고려 중앙집권 체제를 확립했다.',
+    tags: ['과거제', '노비안검법', '왕권강화'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -275,6 +392,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '1019년 거란의 3차 침입 때 상원수로 출정하여 흥화진 수공 전술과 귀주에서의 대결전으로 소배압의 10만 대군을 대파했다. 이후 동북아에 고려·송·거란 간의 세력 균형과 평화가 자리 잡았다.',
     tags: ['귀주대첩', '거란격퇴', '고려명장'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-choechung',
+    name: '최충',
+    alias: '해동공자, 고려 사학의 선구자',
+    era: '고려',
+    category: '학문/사상',
+    summary: '구재학당을 세워 수많은 인재를 길러내며 고려 유학 교육의 기틀을 다졌다.',
+    details:
+      '고려 문종 대까지 재상으로 활약한 뒤 물러나 사립 교육기관인 문헌공도(구재학당)를 설립했다. 체계적인 경전 교육과 과거 준비로 사학 12도의 융성을 이끌어 해동공자라 칭송받았다.',
+    tags: ['구재학당', '해동공자', '사학12도'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -331,6 +461,32 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-leegyubo',
+    name: '이규보',
+    alias: '동명왕편의 천재 문인',
+    era: '고려',
+    category: '문화/예술',
+    summary: '고구려 건국 서사시 동명왕편을 지어 민족의 자주 의식과 기상을 노래했다.',
+    details:
+      '고려 무신 집권기와 몽골 침략기에 활약한 대표 문인으로 동국이상국집에 방대한 시문을 남겼다. 고구려 계승 의식을 담은 동명왕편을 저술하고 몽골의 침략에 맞선 외교 문서를 집필했다.',
+    tags: ['동명왕편', '동국이상국집', '고려문학'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimyunhu',
+    name: '김윤후',
+    alias: '처인성·충주성 승리의 영웅',
+    era: '고려',
+    category: '군사/국방',
+    summary: '처인성 전투에서 몽골 장수 살리타를 사살하며 항몽 투쟁을 승리로 이끌었다.',
+    details:
+      '1232년 용인 처인성에서 부곡민들과 함께 몽골군에 맞서 적장 살리타를 사살하며 대몽 항쟁의 상징이 되었다. 이후 충주성 방어전에서는 노비 문서를 불태워 민심을 하나로 묶고 끝까지 성을 지켜냈다.',
+    tags: ['처인성전투', '충주성전투', '대몽항쟁'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-iryeon',
     name: '일연',
     alias: '삼국유사의 저자',
@@ -340,6 +496,45 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '몽골 침략으로 민족의 자긍심이 흔들리던 13세기 후반, 군위 인각사에서 삼국유사를 집필했다. 고조선 단군 건국 이야기와 신라 향가 14수, 불교 설화와 민중 문화를 생생하게 보존했다.',
     tags: ['삼국유사', '향가', '단군신화'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-anhyang',
+    name: '안향',
+    alias: '고려에 성리학을 전한 학자',
+    era: '고려',
+    category: '학문/사상',
+    summary: '원나라에서 성리학을 들여와 국학을 부흥시키고 후학 양성에 힘썼다.',
+    details:
+      '원나라 연경에서 주자전서를 필사해 귀국함으로써 한국 성리학의 시초를 열었다. 장학 재단인 섬학전을 설치하고 국학 교육 시설을 정비해 고려 말 신진 사대부 학풍의 토대를 마련했다.',
+    tags: ['성리학전래', '섬학전', '국학부흥'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-gongmin',
+    name: '공민왕',
+    alias: '반원 자주 개혁의 군주',
+    era: '고려',
+    category: '정치/외교',
+    summary: '쌍성총관부를 수복하고 반원 개혁 정치를 펼쳐 고려의 자주권을 되찾았다.',
+    details:
+      '친원 세력을 숙청하고 정동행성 이문소를 폐지했으며, 무력으로 쌍성총관부를 탈환해 북방 영토를 회복했다. 전민변정도감을 설치해 권문세족의 횡포를 억제하고 성균관을 중흥시켜 개혁 인재를 길렀다.',
+    tags: ['반원개혁', '쌍성총관부', '전민변정도감'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-choeyeong',
+    name: '최영',
+    alias: '황금을 돌같이 본 고려의 명장',
+    era: '고려',
+    category: '군사/국방',
+    summary: '홍건적과 왜구의 침입을 여러 차례 격퇴하며 평생 청렴하게 나라를 지켰다.',
+    details:
+      '홍산대첩을 비롯해 수십 차례 전장에서 패배를 모르는 용맹으로 고려 말의 국난을 막아냈다. 황금 보기를 돌같이 하라는 아버지의 가르침을 평생 실천하며 고려 왕조를 끝까지 수호했다.',
+    tags: ['홍산대첩', '청렴명장', '고려말'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -383,7 +578,20 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
 
-  // ── 조선 (16명) ────────────────────────────────────────────────────
+  // ── 조선 (26명) ────────────────────────────────────────────────────
+  {
+    id: 'preset-leeseonggye',
+    name: '이성계',
+    alias: '조선의 건국 시조 태조',
+    era: '조선',
+    category: '정치/외교',
+    summary: '위화도 회군 이후 신진 사대부와 함께 새 왕조 조선을 건국하였다.',
+    details:
+      '황산대첩 등 왜구와 홍건적 토벌에서 탁월한 무공을 세워 백성의 신망을 얻었고, 1388년 위화도 회군으로 정권을 장악했다. 1392년 조선을 개국하고 수도를 한양으로 옮겨 500년 왕조의 막을 열었다.',
+    tags: ['조선건국', '위화도회군', '한양천도'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
   {
     id: 'preset-jeongdojeon',
     name: '정도전',
@@ -433,6 +641,32 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '관노 출신의 신분적 한계를 뛰어난 재능으로 극복하고 세종대왕의 발탁을 받아 조선의 과학 수준을 끌어올렸다. 스스로 시간을 알리는 물시계 자격루, 해시계 앙부일구, 혼천의와 측우기 제작에 기여했다.',
     tags: ['자격루', '앙부일구', '천문과학'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimjongseo',
+    name: '김종서',
+    alias: '북방 육진 개척의 대호',
+    era: '조선',
+    category: '군사/국방',
+    summary: '두만강 유역에 육진을 개척해 오늘날 한반도 북부 국경선을 확정했다.',
+    details:
+      '세종대왕의 명을 받아 함길도 도절제사로 부임해 여진족을 몰아내고 10여 년간 두만강 일대에 6진을 설치했다. 최윤덕의 4군과 함께 압록강·두만강 국경선을 확립하며 북방의 호랑이로 불렸다.',
+    tags: ['6진개척', '북방국경', '세종시대'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-jogwangjo',
+    name: '조광조',
+    alias: '도학 정치를 꿈꾼 개혁 사림',
+    era: '조선',
+    category: '정치/외교',
+    summary: '현량과 실시와 소격서 폐지를 주장하며 도덕적 개혁 정치를 펼쳤다.',
+    details:
+      '중종 대 사림파의 중심 인물로 추천제 시험인 현량과를 도입하고 공신 명단의 허위를 바로잡는 위훈 삭제를 추진했다. 기묘사화로 좌절되었으나 그의 지치주의 이상은 조선 사림 정치의 뿌리가 되었다.',
+    tags: ['현량과', '사림개혁', '기묘사화'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -515,6 +749,45 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-gwakjaeu',
+    name: '곽재우',
+    alias: '홍의장군, 임진왜란 최초의 의병장',
+    era: '조선',
+    category: '군사/국방',
+    summary: '임진왜란이 일어나자 사재를 털어 의병을 일으켜 낙동강 전선을 지켜냈다.',
+    details:
+      '1592년 왜란 발발 직후 의령에서 붉은 도포를 입고 의병을 일으켜 정암진 전투 등에서 기동 유격전으로 큰 승리를 거두었다. 호남으로 향하는 왜군의 진격로를 차단하며 전국 의병 봉기의 도화선이 되었다.',
+    tags: ['홍의장군', '의병활동', '정암진전투'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-nongae',
+    name: '논개',
+    alias: '진주 남강의 의로운 충절',
+    era: '조선',
+    category: '군사/국방',
+    summary: '임진왜란 진주성 함락 후 적장을 껴안고 남강에 투신해 민족의 기개를 보였다.',
+    details:
+      '1593년 제2차 진주성 전투가 끝난 뒤 촉석루에서 승전연을 벌이던 일본 무장 게야무라 로쿠스케를 남강 바위로 유인해 함께 몸을 던졌다. 백성들은 그 바위를 의암이라 부르며 숭고한 희생을 기렸다.',
+    tags: ['촉석루', '의암', '임진왜란'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-heonanseolheon',
+    name: '허난설헌',
+    alias: '동아시아에 이름을 떨친 여류 시인',
+    era: '조선',
+    category: '문화/예술',
+    summary: '섬세하고 독창적인 한시로 조선뿐 아니라 중국과 일본 문단까지 감동시켰다.',
+    details:
+      '신분과 성별의 제약이 엄격하던 조선 중기에 뛰어난 문학적 감수성으로 유선시와 규원가 등 주옥같은 시편을 남겼다. 동생 허균이 엮은 난설헌집은 명나라와 일본에서도 간행되어 극찬을 받았다.',
+    tags: ['난설헌집', '여류시인', '조선문학'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-heogyun',
     name: '허균',
     alias: '최초의 한글 소설 작가',
@@ -524,6 +797,32 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '적서 차별과 부패한 권력을 정면으로 비판하며 최초의 한글 소설 홍길동전을 통해 이상향 율도국을 그려냈다. 시인이자 비평가, 개혁 사상가로 활동하며 백성이 나라의 근본이라는 호민론을 주장했다.',
     tags: ['홍길동전', '한글소설', '호민론'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-parkjiwon',
+    name: '박지원',
+    alias: '열하일기의 북학파 실학자',
+    era: '조선',
+    category: '학문/사상',
+    summary: '양반전과 허생전을 통해 신분 사회를 풍자하고 이용후생의 실학을 외쳤다.',
+    details:
+      '청나라를 다녀온 기행문 열하일기에서 수레와 벽돌, 상공업 도입 등 실용적 개혁 방안을 제시했다. 호질·양반전·허생전 같은 날카로운 풍자 소설로 양반 중심 사회의 허례허식을 비판했다.',
+    tags: ['열하일기', '허생전', '북학파'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimhandeok',
+    name: '김만덕',
+    alias: '제주 백성을 살린 의인 거상',
+    era: '조선',
+    category: '경제/산업',
+    summary: '상업으로 모은 전 재산을 풀어 대기근에 빠진 제주 백성들을 구해냈다.',
+    details:
+      '제주도에서 객주업을 일으켜 큰 부를 이룬 뒤 1795년 극심한 흉년이 들자 사재를 털어 육지에서 곡식을 사들여 굶주린 도민들을 구휼했다. 정조는 그의 의로운 행동을 높이 사 금강산 유람 소원을 허락했다.',
+    tags: ['나눔정신', '제주거상', '노블레스오블리주'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -541,6 +840,19 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-parkjega',
+    name: '박제가',
+    alias: '소비와 통상을 강조한 북학 사상가',
+    era: '조선',
+    category: '경제/산업',
+    summary: '북학의를 저술해 상공업 장려와 대외 무역 확대를 통한 부국강병을 제안했다.',
+    details:
+      '규장각 검서관으로 발탁되어 활동하며 우물물을 퍼내야 새 물이 차오른다는 소비 촉진론으로 당시의 경제 인식을 혁신했다. 북학의에서 청나라 선진 문물 수용과 해외 통상의 필요성을 역설했다.',
+    tags: ['북학의', '소비촉진론', '실학경제'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-kimhongdo',
     name: '김홍도',
     alias: '단원, 조선 풍속화의 대가',
@@ -550,6 +862,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '도화서 화원으로 정조의 두터운 신임을 받으며 산수화·인물화·화조화 전반에 걸쳐 탁월한 기량을 펼쳤다. 씨름·서당·무동 등 단원풍속도첩을 통해 조선 백성의 해학과 활기를 생생하게 포착했다.',
     tags: ['단원김홍도', '풍속화', '씨름도'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-shinyunbok',
+    name: '신윤복',
+    alias: '혜원, 세련된 조선 풍속화가',
+    era: '조선',
+    category: '문화/예술',
+    summary: '미인도와 단오풍정 등 감각적인 색채와 구도로 조선 후기 도시 풍속을 그렸다.',
+    details:
+      '혜원전신첩을 통해 한양 도성의 세련된 풍류와 여성의 삶, 남녀의 애정을 섬세한 필선과 화려한 색감으로 표현했다. 김홍도와 함께 조선 후기 풍속화의 쌍벽을 이루며 독보적인 예술 세계를 남겼다.',
+    tags: ['혜원신윤복', '미인도', '단오풍정'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -593,7 +918,20 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
 
-  // ── 근현대 (12명) ──────────────────────────────────────────────────
+  // ── 근현대 (20명) ──────────────────────────────────────────────────
+  {
+    id: 'preset-kimokgyun',
+    name: '김옥균',
+    alias: '갑신정변을 이끈 개화 사상가',
+    era: '근현대',
+    category: '정치/외교',
+    summary: '근대 국가 건설과 자주독립을 목표로 갑신정변을 주도하며 개혁을 시도했다.',
+    details:
+      '박영효·홍영식 등과 급진개화파를 형성해 1884년 갑신정변을 일으키고 문벌 폐지와 인민 평등권, 재정 일원화 등 14개조 개혁 정강을 발표했다. 비록 삼일천하로 끝났으나 근대화 운동의 기점이 되었다.',
+    tags: ['갑신정변', '개화파', '근대화개혁'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
   {
     id: 'preset-jeonbongjun',
     name: '전봉준',
@@ -604,6 +942,32 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '1894년 고부 봉기를 시작으로 황토현과 황룡촌 전투에서 관군을 물리치고 전주성을 점령해 폐정개혁안을 제시했다. 반봉건·반외세 정신은 이후 항일 의병과 근대 민권 운동으로 계승되었다.',
     tags: ['동학농민운동', '녹두장군', '폐정개혁'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-seojaepil',
+    name: '서재필',
+    alias: '독립신문과 독립협회의 창립자',
+    era: '근현대',
+    category: '정치/외교',
+    summary: '최초의 순한글 신문 독립신문을 창간하고 민중 계몽과 자주 민권을 외쳤다.',
+    details:
+      '갑신정변 이후 미국으로 망명해 서양 의학을 공부하고 귀국한 뒤 1896년 한글판·영문판 독립신문을 창간했다. 독립협회와 독립문 건립, 만민공동회를 통해 근대 민주주의와 시민 의식을 일깨웠다.',
+    tags: ['독립신문', '독립협회', '만민공동회'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-minyeonghwan',
+    name: '민영환',
+    alias: '을사늑약에 항거한 충정공',
+    era: '근현대',
+    category: '정치/외교',
+    summary: '을사늑약의 부당함을 알리고 국민에게 보내는 유서를 남기며 순절했다.',
+    details:
+      '대한제국의 고위 관료로 근대 개혁을 지원하다 1905년 일제가 강제로 을사늑약을 체결하자 조약 파기를 상소했다. 끝내 받아들여지지 않자 2천만 동포에게 고함 유서를 남기고 순절해 항일 의지를 일깨웠다.',
+    tags: ['을사늑약항거', '충정공', '혈죽'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -647,6 +1011,19 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-leehoeyeong',
+    name: '이회영',
+    alias: '전 재산을 바친 독립운동가 우당',
+    era: '근현대',
+    category: '군사/국방',
+    summary: '형제들과 함께 전 재산을 처분해 만주로 망명하고 신흥무관학교를 세웠다.',
+    details:
+      '명문가 출신임에도 1910년 국권 피탈 직후 6형제가 모든 가산을 정리해 서간도로 망명했다. 신흥강습소와 신흥무관학교를 설립해 청산리 대첩과 광복군의 주축이 된 수천 명의 독립군 간부를 양성했다.',
+    tags: ['신흥무관학교', '우당이회영', '노블레스오블리주'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-shinchaeho',
     name: '신채호',
     alias: '단재, 민족 사학의 거목',
@@ -660,28 +1037,15 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
-    id: 'preset-kimjwajin',
-    name: '김좌진',
-    alias: '청산리 대첩의 백야 장군',
+    id: 'preset-hanyongun',
+    name: '한용운',
+    alias: '님의 침묵을 쓴 독립운동가 만해',
     era: '근현대',
-    category: '군사/국방',
-    summary: '북로군정서를 지휘해 청산리 대첩에서 일본군을 크게 격파하였다.',
+    category: '문화/예술',
+    summary: '기미독립선언서 공약 삼장을 작성하고 시집 님의 침묵으로 저항 정신을 노래했다.',
     details:
-      '1920년 10월 만주 화룡현 청산리 일대에서 홍범도 등 연합 독립군과 함께 엿새간 열 차례 넘는 격전 끝에 일본 정예군을 대파했다. 이후 신민부를 조직해 만주 한인 사회의 자치와 군사 양성에 힘썼다.',
-    tags: ['청산리대첩', '북로군정서', '독립군'],
-    isPreset: true,
-    createdAt: SEED_DATE,
-  },
-  {
-    id: 'preset-hongbeomdo',
-    name: '홍범도',
-    alias: '봉오동 전투의 독립군 영웅',
-    era: '근현대',
-    category: '군사/국방',
-    summary: '대한독립군을 이끌고 봉오동 전투에서 일본군을 무찌르며 독립 의지를 보였다.',
-    details:
-      '평민 포수 출신으로 항일 의병장을 거쳐 만주에서 대한독립군 총사령관으로 활약했다. 1920년 6월 봉오동 전투에서 지형을 활용한 매복 전술로 일본군 정규군에 첫 대승을 거두고 청산리 대첩에도 참전했다.',
-    tags: ['봉오동전투', '대한독립군', '항일무장투쟁'],
+      '3·1 운동 민족대표 33인으로 참여해 비폭력·자주 독립의 원칙을 담은 공약 삼장을 집필하고 옥고를 치렀다. 시집 님의 침묵을 통해 빼앗긴 조국을 향한 간절한 사랑과 광복의 확신을 문학으로 승화했다.',
+    tags: ['님의침묵', '민족대표33인', '만해한용운'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -699,6 +1063,32 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-hongbeomdo',
+    name: '홍범도',
+    alias: '봉오동 전투의 독립군 영웅',
+    era: '근현대',
+    category: '군사/국방',
+    summary: '대한독립군을 이끌고 봉오동 전투에서 일본군을 무찌르며 독립 의지를 보였다.',
+    details:
+      '평민 포수 출신으로 항일 의병장을 거쳐 만주에서 대한독립군 총사령관으로 활약했다. 1920년 6월 봉오동 전투에서 지형을 활용한 매복 전술로 일본군 정규군에 첫 대승을 거두고 청산리 대첩에도 참전했다.',
+    tags: ['봉오동전투', '대한독립군', '항일무장투쟁'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimjwajin',
+    name: '김좌진',
+    alias: '청산리 대첩의 백야 장군',
+    era: '근현대',
+    category: '군사/국방',
+    summary: '북로군정서를 지휘해 청산리 대첩에서 일본군을 크게 격파하였다.',
+    details:
+      '1920년 10월 만주 화룡현 청산리 일대에서 홍범도 등 연합 독립군과 함께 엿새간 열 차례 넘는 격전 끝에 일본 정예군을 대파했다. 이후 신민부를 조직해 만주 한인 사회의 자치와 군사 양성에 힘썼다.',
+    tags: ['청산리대첩', '북로군정서', '독립군'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-kimgu',
     name: '김구',
     alias: '백범 임시정부 주석',
@@ -708,6 +1098,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '한인애국단을 조직하고 한국광복군을 창설해 무장 독립 투쟁을 지도했으며, 광복 후에는 남북 분단을 막기 위해 헌신했다. 저서 백범일지의 나의 소원에서 높은 문화의 힘을 지닌 자주독립국을 꿈꾸었다.',
     tags: ['임시정부', '백범일지', '문화강국'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-jicheongcheon',
+    name: '지청천',
+    alias: '한국광복군 총사령관 백산',
+    era: '근현대',
+    category: '군사/국방',
+    summary: '만주 독립군과 한국광복군을 지휘하며 무장 독립 투쟁의 중심에 섰다.',
+    details:
+      '신흥무관학교 교성대장을 시작으로 한국독립군 총사령관으로 쌍성보·대전자령 전투에서 대승을 거두었다. 1940년 충칭에서 창설된 대한민국 임시정부 정규군 한국광복군 총사령관으로 국내 진공 작전을 준비했다.',
+    tags: ['한국광복군', '대전자령전투', '독립군사령관'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -738,6 +1141,32 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-choehyeonbae',
+    name: '최현배',
+    alias: '우리말본의 한글 학자 외솔',
+    era: '근현대',
+    category: '학문/사상',
+    summary: '조선어학회 활동과 우리말본 저술로 일제 탄압 속에서도 한글을 지켜냈다.',
+    details:
+      '주시경의 제자로서 방대한 문법서 우리말본을 저술하고 한글 맞춤법 통일안 제정과 큰사전 편찬을 주도했다. 조선어학회 사건으로 옥고를 치렀으며 광복 후에는 한글 전용과 국어 교과서 편찬에 헌신했다.',
+    tags: ['우리말본', '조선어학회', '한글수호'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-leeyuksa',
+    name: '이육사',
+    alias: '광야와 청포도의 저항 시인',
+    era: '근현대',
+    category: '문화/예술',
+    summary: '독립운동에 헌신하며 광야와 절정을 통해 강인한 민족의 의지를 노래했다.',
+    details:
+      '의열단원으로 활동하며 일제에 17차례나 투옥되는 고초를 겪으면서도 수인 번호 264를 필명으로 삼아 저항 시를 썼다. 청포도·광야·절정 등 선 굵은 시편으로 끝까지 조국 광복의 신념을 지켰다.',
+    tags: ['광야', '청포도', '저항시인'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-yoondongju',
     name: '윤동주',
     alias: '별을 노래한 민족 시인',
@@ -751,7 +1180,7 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
 
-  // ── 현대/기타 (9명) ────────────────────────────────────────────────
+  // ── 현대/기타 (16명) ───────────────────────────────────────────────
   {
     id: 'preset-yuilhan',
     name: '유일한',
@@ -779,6 +1208,32 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
+    id: 'preset-ahneaktai',
+    name: '안익태',
+    alias: '애국가의 작곡가이자 지휘자',
+    era: '현대/기타',
+    category: '문화/예술',
+    summary: '애국가와 코리아 판타지를 작곡해 세계 무대에 한국 음악의 울림을 전했다.',
+    details:
+      '미국과 유럽에서 음악을 공부하며 1936년 한국 환상곡과 그 종악장 선율인 애국가를 완성했다. 유럽 유수의 교향악단을 지휘하며 한국의 정서와 독립 염원을 서양 교향곡 형식으로 세계에 알렸다.',
+    tags: ['애국가', '한국환상곡', '교향악지휘'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-leejungseop',
+    name: '이중섭',
+    alias: '황소를 그린 비운의 천재 화가',
+    era: '현대/기타',
+    category: '문화/예술',
+    summary: '강렬한 필치의 황소와 은지화 작품으로 한국 근현대 서양화의 새 장을 열었다.',
+    details:
+      '전쟁과 가난의 고통 속에서도 가족을 향한 그리움과 민족의 생명력을 힘찬 선과 독창적인 색채로 화폭에 담았다. 담뱃갑 은박지에 새긴 은지화는 뉴욕 현대미술관에도 소장될 만큼 예술성을 인정받았다.',
+    tags: ['황소', '은지화', '근현대미술'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
     id: 'preset-woojangchoon',
     name: '우장춘',
     alias: '세계적 육종학자',
@@ -788,6 +1243,19 @@ export const PRESET_PEOPLE: Person[] = [
     details:
       '유전학계에 우의 삼각형으로 알려진 종의 합성 이론을 정립한 뒤 1950년 한국으로 귀국해 한국농업과학연구소를 설립했다. 6·25 전쟁 직후 배추·무·감자·제주 감귤 품종을 개량해 국민의 먹거리 자급 기반을 다졌다.',
     tags: ['육종학', '우의삼각형', '식량자급'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-janggiryeo',
+    name: '장기려',
+    alias: '한국의 슈바이처, 청십자 의사',
+    era: '현대/기타',
+    category: '과학/기술',
+    summary: '평생 가난한 환자를 무료로 치료하며 국내 최초의 민간의료보험을 실천했다.',
+    details:
+      '국내 최초로 간 대량 절제술에 성공한 외과 의학자이자, 부산 복음병원을 세워 평생 가난한 이들을 무료로 진료했다. 1968년 청십자의료보험조합을 창설해 오늘날 국민건강보험 제도의 선구적 모델을 제시했다.',
+    tags: ['청십자의료보험', '복음병원', '의료봉사'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -831,15 +1299,41 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
-    id: 'preset-namjunepaik',
-    name: '백남준',
-    alias: '비디오 아트의 아버지',
+    id: 'preset-parktaejoon',
+    name: '박태준',
+    alias: '제철 보국의 신화, 포항제철 설립자',
     era: '현대/기타',
-    category: '문화/예술',
-    summary: '텔레비전과 첨단 기술을 예술로 승화해 비디오 아트 장르를 열었다.',
+    category: '경제/산업',
+    summary: '불모지 영일만에 현대식 제철소를 세워 대한민국 산업화의 핵심 기반을 다졌다.',
     details:
-      '전자 공학과 아방가르드 음악을 결합해 텔레비전을 예술 매체로 탈바꿈시켰으며, 전 세계를 위성으로 연결한 굿모닝 미스터 오웰과 다다익선 등을 통해 현대 미디어 아트의 지평을 열었다.',
-    tags: ['비디오아트', '미디어예술', '다다익선'],
+      '자본과 기술이 전무하던 시절 제철 보국의 신념으로 포항종합제철을 건설해 자동차·조선·건설 산업의 기초 소재인 철강 자급을 이뤄냈다. 포항공과대학교 설립을 통해 과학 기술 인재 양성에도 힘썼다.',
+    tags: ['포항제철', '철강산업', '포스텍'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimsuhwan',
+    name: '김수환',
+    alias: '한국 최초의 추기경, 나눔의 어른',
+    era: '현대/기타',
+    category: '학문/사상',
+    summary: '민주화와 인권 수호에 앞장서고 평생 소외된 이웃을 품으며 큰 울림을 남겼다.',
+    details:
+      '1969년 한국 최초의 추기경에 서임된 뒤 격동의 현대사 속에서 약자의 피난처이자 사회의 양심으로 존경받았다. 선종 시 각막을 기증하며 마지막 순간까지 사랑과 나눔의 삶을 실천했다.',
+    tags: ['추기경', '민주화인권', '사랑과나눔'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-kimdaejung',
+    name: '김대중',
+    alias: '대한민국 최초의 노벨평화상 수상자',
+    era: '현대/기타',
+    category: '정치/외교',
+    summary: '평생 민주주의와 인권, 한반도 평화 정착에 헌신해 노벨평화상을 수상했다.',
+    details:
+      '오랜 민주화 운동 끝에 제15대 대통령에 취임해 외환 위기를 조기에 극복하고 초고속 정보통신망과 문화 산업 육성의 기반을 닦았다. 2000년 남북정상회담과 평화 공존 노력으로 한국 최초의 노벨평화상을 받았다.',
+    tags: ['노벨평화상', '민주주의', '남북화해'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -857,15 +1351,41 @@ export const PRESET_PEOPLE: Person[] = [
     createdAt: SEED_DATE,
   },
   {
-    id: 'preset-janggiryeo',
-    name: '장기려',
-    alias: '한국의 슈바이처, 청십자 의사',
+    id: 'preset-namjunepaik',
+    name: '백남준',
+    alias: '비디오 아트의 아버지',
+    era: '현대/기타',
+    category: '문화/예술',
+    summary: '텔레비전과 첨단 기술을 예술로 승화해 비디오 아트 장르를 열었다.',
+    details:
+      '전자 공학과 아방가르드 음악을 결합해 텔레비전을 예술 매체로 탈바꿈시켰으며, 전 세계를 위성으로 연결한 굿모닝 미스터 오웰과 다다익선 등을 통해 현대 미디어 아트의 지평을 열었다.',
+    tags: ['비디오아트', '미디어예술', '다다익선'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-benjaminlee',
+    name: '이휘소',
+    alias: '세계적 이론물리학자 벤 리',
     era: '현대/기타',
     category: '과학/기술',
-    summary: '평생 가난한 환자를 무료로 치료하며 국내 최초의 민간의료보험을 실천했다.',
+    summary: '게이지 이론과 참 쿼크 질량 예측으로 현대 입자물리학 발전에 크게 기여했다.',
     details:
-      '국내 최초로 간 대량 절제술에 성공한 외과 의학자이자, 부산 복음병원을 세워 평생 가난한 이들을 무료로 진료했다. 1968년 청십자의료보험조합을 창설해 오늘날 국민건강보험 제도의 선구적 모델을 제시했다.',
-    tags: ['청십자의료보험', '복음병원', '의료봉사'],
+      '미국 페르미국립가속기연구소 이론물리학부장을 역임하며 자발적 대칭성 깨짐과 재규격화 연구로 표준모형 정립에 결정적 공헌을 했다. 한국 과학계와 세계 물리학계에 깊은 족적을 남긴 천재 물리학자다.',
+    tags: ['입자물리학', '참쿼크', '표준모형'],
+    isPreset: true,
+    createdAt: SEED_DATE,
+  },
+  {
+    id: 'preset-leetaeseok',
+    name: '이태석',
+    alias: '남수단 톤즈의 슈바이처 신부',
+    era: '현대/기타',
+    category: '과학/기술',
+    summary: '전쟁으로 황폐해진 남수단 톤즈에 병원과 학교를 세워 평생 사랑과 의술을 나눴다.',
+    details:
+      '의사이자 가톨릭 사제로서 내전으로 고통받던 아프리카 남수단 톤즈에 직접 진료소와 학교를 짓고 한센병 환자와 아이들을 돌봤다. 브라스밴드를 만들어 아이들에게 음악과 희망을 선물한 헌신은 전 세계에 감동을 주었다.',
+    tags: ['톤즈의슈바이처', '의료봉사', '울지마톤즈'],
     isPreset: true,
     createdAt: SEED_DATE,
   },
@@ -957,7 +1477,7 @@ export function loadPeoplePool(): Person[] {
       .map((item) => normalizePersonRecord(item))
       .filter((item): item is Person => item !== null);
 
-    // One-time non-destructive sync when preset archive grows to a newer version:
+    // Non-destructive sync when preset archive expands to a newer version:
     // preserves all custom additions and existing edits, and appends newly added presets.
     const storedVersion = Number(
       window.localStorage.getItem(SEED_VERSION_KEY) ?? '1'
